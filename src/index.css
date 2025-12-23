@@ -1,0 +1,300 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ========= MAIN LAYOUT ========= */
+
+.main-parent {
+  border: 5px solid black;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+}
+
+.parent {
+  border: 2px solid black;
+  width: 28vw;
+  position: relative;   /* 🔑 reference for header & button */
+}
+
+/* ========= HEADER COMPONENT ========= */
+
+.Header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;             /* 🔑 width locked to parent */
+  background-color: #034EA2;
+  color: white;
+  font-size: 2em;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  font-family: 'Jost', sans-serif;
+  border-bottom: 2px solid black;
+  z-index: 1000;
+}
+
+.HeaderChild {
+  position: relative;
+  left: 10px;
+}
+
+/* ========= HOME PAGE ========= */
+
+.HomePage {
+  width: 100%;
+  min-height: 100vh;
+  padding-top: 80px;    /* space for header */
+}
+
+/* ========= FLOATING BUTTON ========= */
+
+.HomePageButton {
+  position: absolute;   /* 🔑 stays inside parent */
+  bottom: 30px;
+  right: 20px;
+
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  font-size: 2rem;
+  background-color: #034EA2;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+/* ========= SEARCH BAR ========= */
+
+.SearchBar {
+  display: flex;
+  justify-content: center;
+}
+
+.SearchBar-child {
+  border: 2px solid black;
+  width: 98%;
+  height: 3em;
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+  gap: 10px;
+  border-radius: 5px;
+  margin-top: 5px;
+}
+
+.SearchBar-child input {
+  border: none;
+  outline: none;
+}
+
+.Search-icon {
+  color: #034EA2;
+}
+
+/* ========= TASK DASHBOARD ========= */
+
+.TaskDashBoard {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+  
+}
+
+.TaskDashBoard-child {
+  width: 98%;
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+border:2px solid red;
+ 
+}
+
+.individual {
+  display: flex;
+  border: 2px solid #F3F6F9;
+  height: 2.8em;
+  align-items: center;
+  padding-left: 12px;
+  /* overflow: hidden; */
+  
+}
+
+
+/*********** TASKLIST  **************/
+
+.Task-Item {
+  border: 1px solid #e0e0e0;
+  padding: 12px;
+  display: flex;
+  gap: 12px;
+  border-radius: 8px;
+  background-color: #fff;
+}
+
+/* Profile Circle */
+.Individual-Task-Profile {
+  height: 36px;
+  width: 36px;
+  border-radius: 50%;
+  border:1px solid #034EA2;;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+}
+
+/* Right Side */
+.task-items {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  border:2px solid black;
+}
+
+/* Title Section */
+.Individual-Task-title {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+   
+}
+
+.task-title {
+  color: #034EA2;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.task-desc {
+  font-size: 0.85rem;
+  color: #555;
+}
+
+.task-date {
+  font-size: 0.75rem;
+  color: #888;
+}
+
+/* Status */
+.Individual-Task-Status {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.85rem;
+ 
+}
+
+.status.pending {
+  color: gray;
+}
+
+.icons{
+background-color: red;
+align-self: flex-end;
+}
+
+
+
+/*************** ADD TASK ***************/
+
+.AddTasks{
+  margin-top: 130px;
+  width: 98%;
+  display:flex;
+  flex-direction: column;
+  padding:10px;
+row-gap: 18px;
+
+}
+
+.AddTasks textarea{
+ border-radius: 5px;
+ padding-left: 4px;
+ padding-top: 10px;
+}
+
+.AddTasks input{
+ border-radius: 5px;
+ height:4em;
+ padding-left: 4px;
+ 
+}
+
+.Buttons{
+  /* border:2px solid black; */
+display: flex;
+justify-content: space-between;
+}
+
+.ButtonAdd{
+height:3em;
+width:8em;
+background-color: #034EA2;
+border-radius: 4px;
+border:none;
+}
+
+.ButtonCancel{
+height:3em;
+width:8em;
+background-color: white;
+border-radius: 4px;
+border:1px solid blue;
+}
+
+
+/*************  Edit page   ***************/
+.dropdown-wrapper {
+  position: relative;
+  width: 100%;
+ 
+}
+
+.DropDown {
+  border: 2px solid rgb(202, 192, 192);
+  height: 3em;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 10px;
+  cursor: pointer;
+  background: white;
+   border-radius: 5px;
+}
+
+/* ONE container for all options */
+.statusOptionParent {
+  position: absolute;
+  top: 4rem;
+  width: 100%;
+  border: 2px solid rgb(202, 192, 192);
+  background: white;
+  z-index: 10;
+  border-radius: 5px;
+}
+
+.status-option {
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+}
+
+.status-option:hover {
+  background-color: #f2f2f2;
+}
+.green{
+
+}
+.yellow{
+
+}
+.gray{
+
+}
