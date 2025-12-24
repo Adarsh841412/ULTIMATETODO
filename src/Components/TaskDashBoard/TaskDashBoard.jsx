@@ -4,11 +4,11 @@ import { useContext ,useState} from 'react'
 import { TaskContext } from '../TaskProvider/TaskProvider'
 const TaskDashBoard = () => {
 
-const{task,addTask}=useContext(TaskContext)
+const{task,addTask,filteredTask}=useContext(TaskContext)
 
-let pendingTasks=task.filter(ele=>ele.status==="pending")
-let inProgress=task.filter(ele=>ele.status==="progress")
-let completed=task.filter(ele=>ele.status==="completed")
+let pendingTasks=filteredTask.filter(ele=>ele.status==="pending")
+let inProgress=filteredTask.filter(ele=>ele.status==="progress")
+let completed=filteredTask.filter(ele=>ele.status==="completed")
 
 let[activeStatus,setActiveStatus]=useState(null);
 

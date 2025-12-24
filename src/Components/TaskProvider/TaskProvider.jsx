@@ -1,64 +1,42 @@
-import React, { useCallback, useState ,createContext} from 'react'
-export const TaskContext=createContext();
-const TaskProvider = ({children}) => {
+import React, { useState, createContext } from 'react';
 
-    const[task,setTask]=useState([])
-    
-      const addTask = (newTask,id) => {
-    
+export const TaskContext = createContext();
 
-        //* search filter
+const TaskProvider = ({ children }) => {
+  const [task, setTask] = useState([]);
+  const [searchTask, setSearchTask] = useState("");
 
-if(id=="filter0"){
-  
-console.log("all good")
-}
-
-else if(id=="filter1"){
-console.log("not good")
-
-
-}
-     //*delete
-     
-    else if(id=="delete"){
-      setTask(newTask)
-     }
-
-
-        //* update
-    else if(id){
-      let newArr=[]
-      task.map((ele)=>{
-        if(ele.id!=id) newArr.push(ele);
-        else{
-          newArr.push(newTask);
-        }
-      })
-  
-setTask(newArr);
-    }   
-    
-    
-   //* add
-   else {
-  
-    setTask((prev) => {
-
-
-      return [...prev, newTask];
-    });
-   }
- 
+  const addTask = (newTask, id) => {
+    if (id === "delete") {
+      setTask(newTask);
+    } else if (id) {
+      const updated = task.map((ele) =>
+        ele.id !== id ? ele : newTask
+      );
+      setTask(updated);
+    } else {
+      setTask((prev) => [...prev, newTask]);
+    }
   };
+
+  // ✅ filter logic
+  const filteredTask =
+    searchTask.trim() === ""
+      ? task
+      : task.filter((item) =>
+          Object.values(item)
+            .join("")
+            .toLowerCase()
+            .includes(searchTask.toLowerCase())
+        );
+
   return (
-    <TaskContext.Provider  value={{task,addTask}}>
-
-{children}
-
-
+    <TaskContext.Provider
+      value={{ task, filteredTask, addTask, setSearchTask }}
+    >
+      {children}
     </TaskContext.Provider>
-  )
-}
+  );
+};
 
 export default TaskProvider;
