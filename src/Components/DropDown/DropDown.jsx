@@ -1,38 +1,41 @@
 import React, { useState } from "react";
 
-const DropDown = () => {
+const DropDown = ({ value, onChange }) => {
   const options = [
-    { label: "Pending", icon: "fa-regular fa-circle gray" },
-    { label: "In Progress", icon: "fa-regular fa-circle yellow" },
-    { label: "Completed", icon: "fa-regular fa-circle  green" },
+    { label: "Pending", value: "pending", icon: "gray" },
+    { label: "In Progress", value: "progress", icon: "yellow" },
+    { label: "Completed", value: "completed", icon: "green" },
   ];
 
   const [showDropDown, setDropDown] = useState(false);
-  const [selected, setSelected] = useState(options[0]);
+
+  const selected =
+    options.find((opt) => opt.value === value) || options[0];
 
   const handleSelect = (option) => {
-    setSelected(option);
+    onChange(option.value);  
     setDropDown(false);
   };
 
   return (
     <div className="dropdown-wrapper">
-      {/* MAIN BOX */}
-      <div className="DropDown" onClick={() => setDropDown(!showDropDown)}>
+      <div
+        className="DropDown"
+        onClick={() => setDropDown(!showDropDown)}
+      >
         <i className={selected.icon}></i>
         <span>{selected.label}</span>
       </div>
 
-      {/* OPTIONS */}
       {showDropDown && (
         <div className="statusOptionParent">
           {options.map((ele) => (
             <div
-              key={ele.label}
+              key={ele.value}
               className="status-option"
               onClick={() => handleSelect(ele)}
             >
-              <i className={ele.icon}></i>
+              <span className={`EditIconColor ${ele.icon}`}> </span>
               <span>{ele.label}</span>
             </div>
           ))}

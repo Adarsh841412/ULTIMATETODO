@@ -7,10 +7,10 @@ const TaskDashBoard = () => {
 const{task,addTask}=useContext(TaskContext)
 
 let pendingTasks=task.filter(ele=>ele.status==="pending")
-let inProgress=task.filter(ele=>ele.status==="inProgress")
+let inProgress=task.filter(ele=>ele.status==="progress")
 let completed=task.filter(ele=>ele.status==="completed")
 
-
+console.log("dffasddf", inProgress);
 let[activeStatus,setActiveStatus]=useState(null);
 
 
@@ -21,12 +21,12 @@ let[activeStatus,setActiveStatus]=useState(null);
   
 <div
   className="individual"
-  onClick={() => setActiveStatus("inProgress")}
+  onClick={() => setActiveStatus("progress")}
 >
   inProgress ({inProgress.length})
 </div>
 
-{activeStatus === "inProgress" && (
+{activeStatus === "progress" && (
   <TaskList task={inProgress} />
 )}
 

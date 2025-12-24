@@ -1,7 +1,12 @@
 import React from 'react'
-
+import {Link} from 'react-router-dom'
+import { useNavigate } from 'react-router-dom';
+import { TaskContext } from '../TaskProvider/TaskProvider';
+import { useContext } from 'react';
 const TaskItem = ({ task }) => {
 
+
+const navigate=useNavigate();
   const options = {
     weekday: 'long',
     day: '2-digit',
@@ -13,6 +18,15 @@ const TaskItem = ({ task }) => {
     'en-IN',
     options
   )
+
+
+//* delete Task 
+
+function deleteTask(task){
+
+}
+
+
 
   return (
     <div className="Task-Item">
@@ -31,8 +45,8 @@ const TaskItem = ({ task }) => {
           <p style={{ color: "#034EA2", fontSize: "larger" }}>
             {task.title[0].toUpperCase() + task.title.slice(1)}
           </p>
-          <p>{task.description}</p>
-          <p>{formattedDate}</p>
+          <p style={{fontSize:"smaller"}}>{task.description}</p>
+          <p style={{fontSize:"smaller"}}>{formattedDate}</p>
         </div>
 
         {/* STATUS ICONS */}
@@ -42,18 +56,44 @@ const TaskItem = ({ task }) => {
             <>
               <i
                 className="fa-solid fa-circle"
-                style={{ color: "gray", marginRight: "6px" }}
+                style={{ color: "gray", marginRight: "6px",fontSize:"7px" }}
               ></i>
               <span>Pending</span>
             </>
           )}
 
-          <div className="icons">
-            <i className="fa-regular fa-trash-can"></i>
-            <i className="fa-solid fa-pencil"></i>
-          </div>
+
+  {task.status === "progress" && (
+            <>
+              <i
+                className="fa-solid fa-circle"
+                style={{ color: "#FFB03C", marginRight: "6px" , fontSize:"7px"}}
+              ></i>
+              <span>Pending</span>
+            </>
+          )}
+
+
+
+            {task.status === "completed" && (
+            <>
+              <i
+                className="fa-solid fa-circle"
+                style={{ color: "#368A04", marginRight: "6px",fontSize:"7px" }}
+              ></i>
+              <span>Pending</span>
+            </>
+          )}
 
         </div>
+
+ <div className="icons">
+
+  <Link to="/edit" state={task} ><i className="fa-solid fa-pencil"  style={{color:"#034EA2"}}></i> </Link>      
+  
+  <i className="fa-regular fa-trash-can" style={{color:"red"}}  onClick={()=>deleteTask(task)}></i>
+            
+          </div>
 
       </div>
     </div>
