@@ -55,9 +55,9 @@ setCurrTask(()=>{
 <form onSubmit={handleFrm}>
       <div className='AddTasks'>
 
-        <input placeholder='Enter the Title' value={currTask.title} onChange={handleUpdate} name='title'></input>
+        <input placeholder='Enter the Title' value={currTask.title} onChange={handleUpdate} name='title'  style={{cursor:"pointer"}}></input>
 
-        <textarea placeholder="Enter the Description" rows={5} value={currTask.description}  onChange={handleUpdate} name='description'></textarea>
+        <textarea placeholder="Enter the Description" rows={5} value={currTask.description}  onChange={handleUpdate} name='description' style={{cursor:"pointer"}}></textarea>
 
       <DropDown
   value={currTask.status}

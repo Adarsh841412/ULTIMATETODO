@@ -3,7 +3,9 @@ import {Link} from 'react-router-dom'
 import { useNavigate } from 'react-router-dom';
 import { TaskContext } from '../TaskProvider/TaskProvider';
 import { useContext } from 'react';
-const TaskItem = ({ task }) => {
+const TaskItem = ({ tasks }) => {
+
+const{task,addTask}=useContext(TaskContext);
 
 
 const navigate=useNavigate();
@@ -14,7 +16,7 @@ const navigate=useNavigate();
     year: 'numeric',
   }
 
-  const formattedDate = new Date(task.id).toLocaleDateString(
+  const formattedDate = new Date(tasks.id).toLocaleDateString(
     'en-IN',
     options
   )
@@ -22,7 +24,10 @@ const navigate=useNavigate();
 
 //* delete Task 
 
-function deleteTask(task){
+function deleteTask(currTask){
+
+  const remainingTask=task.filter((el)=>el.id!=currTask.id);
+  addTask(remainingTask,"delete");
 
 }
 
@@ -34,7 +39,7 @@ function deleteTask(task){
       {/* PROFILE CIRCLE */}
       <div className="Individual-Task-Profile">
         <div className="circle">
-          {task.title[0].toUpperCase()}
+          {tasks.title[0].toUpperCase()}
         </div>
       </div>
 
@@ -43,16 +48,16 @@ function deleteTask(task){
 
         <div className="Individual-Task-title">
           <p style={{ color: "#034EA2", fontSize: "larger" }}>
-            {task.title[0].toUpperCase() + task.title.slice(1)}
+            {tasks.title[0].toUpperCase() + tasks.title.slice(1)}
           </p>
-          <p style={{fontSize:"smaller"}}>{task.description}</p>
+          <p style={{fontSize:"smaller"}}>{tasks.description}</p>
           <p style={{fontSize:"smaller"}}>{formattedDate}</p>
         </div>
 
         {/* STATUS ICONS */}
         <div className="Individual-Task-Status">
 
-          {task.status === "pending" && (
+          {tasks.status === "pending" && (
             <>
               <i
                 className="fa-solid fa-circle"
@@ -63,7 +68,7 @@ function deleteTask(task){
           )}
 
 
-  {task.status === "progress" && (
+  {tasks.status === "progress" && (
             <>
               <i
                 className="fa-solid fa-circle"
@@ -75,7 +80,7 @@ function deleteTask(task){
 
 
 
-            {task.status === "completed" && (
+            {tasks.status === "completed" && (
             <>
               <i
                 className="fa-solid fa-circle"
@@ -89,9 +94,9 @@ function deleteTask(task){
 
  <div className="icons">
 
-  <Link to="/edit" state={task} ><i className="fa-solid fa-pencil"  style={{color:"#034EA2"}}></i> </Link>      
+  <Link to="/edit" state={tasks} ><i className="fa-solid fa-pencil"  style={{color:"#034EA2"}}></i> </Link>      
   
-  <i className="fa-regular fa-trash-can" style={{color:"red"}}  onClick={()=>deleteTask(task)}></i>
+  <i className="fa-regular fa-trash-can" style={{color:"red"}}  onClick={()=>deleteTask(tasks)}></i>
             
           </div>
 

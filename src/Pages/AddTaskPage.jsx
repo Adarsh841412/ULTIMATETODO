@@ -54,9 +54,9 @@ const AddTaskPage = ({ headerText }) => {
       <form onSubmit={handleFrm}>
         <div className='AddTasks'>
 
-          <input placeholder='Enter the Title' name='title' onChange={initialTask} value={tasks.title}></input>
+          <input placeholder='Enter the Title' name='title' onChange={initialTask} value={tasks.title} className='addInput' ></input>
 
-          <textarea placeholder="Enter the Description" rows={5} name='description' onChange={initialTask} value={tasks.description}></textarea>
+          <textarea  className='addTextArea'  placeholder="Enter the Description" rows={5} name='description' onChange={initialTask} value={tasks.description}></textarea>
 
           <div className='Buttons'>
 

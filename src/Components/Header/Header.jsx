@@ -8,7 +8,7 @@ const Header = ({text}) => {
 { text==="Add Task" &&
 <>
 &nbsp;
-<Link to="/"> <i class="fa-solid fa-arrow-left" style={{color:"white"}}></i></Link>
+<Link to="/"> <i className="fa-solid fa-arrow-left thin-arrow" style={{color:"white"}}></i></Link>
  <p className='HeaderChild'>{name}</p>
 
 </>
@@ -26,7 +26,7 @@ const Header = ({text}) => {
 
   <>
  
- <Link to="/"> <i class="fa-solid fa-arrow-left" style={{color:"white", paddingLeft:"8px"}}></i></Link>
+ <Link to="/"> <i className="fa-solid fa-arrow-left  thin-arrow" style={{color:"white", paddingLeft:"8px"}}></i></Link>
  <p className='HeaderChild'>{name}</p>
   </>
 )

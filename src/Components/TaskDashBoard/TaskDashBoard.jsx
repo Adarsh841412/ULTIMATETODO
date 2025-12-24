@@ -10,7 +10,6 @@ let pendingTasks=task.filter(ele=>ele.status==="pending")
 let inProgress=task.filter(ele=>ele.status==="progress")
 let completed=task.filter(ele=>ele.status==="completed")
 
-console.log("dffasddf", inProgress);
 let[activeStatus,setActiveStatus]=useState(null);
 
 
@@ -23,7 +22,7 @@ let[activeStatus,setActiveStatus]=useState(null);
   className="individual"
   onClick={() => setActiveStatus("progress")}
 >
-  inProgress ({inProgress.length})
+  in Progress &nbsp;<b>({inProgress.length}) </b>
 </div>
 
 {activeStatus === "progress" && (
@@ -35,7 +34,7 @@ let[activeStatus,setActiveStatus]=useState(null);
   className="individual"
   onClick={() => setActiveStatus("pending")}
 >
-  Pending ({pendingTasks.length})
+  Pending &nbsp; <b>({pendingTasks.length}) </b>
 </div>
 
 {activeStatus === "pending" && (
@@ -47,7 +46,7 @@ let[activeStatus,setActiveStatus]=useState(null);
   className="individual"
   onClick={() => setActiveStatus("completed")}
 >
-  Completed ({completed.length})
+  Completed &nbsp; <b>({completed.length})</b>  
 </div>
 
 {activeStatus === "completed" && (
