@@ -25,6 +25,8 @@ const DropDown = ({ value, onChange }) => {
       >
         <i className={selected.icon}></i>
         <span>{selected.label}</span>
+        <i className="fa-solid fa-chevron-down  drop" style={{opacity:"0.5", textAlign:"center"}}></i>
+
       </div>
 
       {showDropDown && (

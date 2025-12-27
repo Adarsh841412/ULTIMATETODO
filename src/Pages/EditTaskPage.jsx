@@ -49,7 +49,7 @@ setCurrTask(()=>{
 
 
   return (
-    <div className='AddTask'>
+    <div className='AddTask  EditTask'>
 
       <Header text={headerText} />
 <form onSubmit={handleFrm}>
@@ -71,7 +71,7 @@ setCurrTask(()=>{
         <div className='Buttons'>
 
          <Link to="/"> <button className='ButtonCancel'>Cancel</button></Link>
-          <button className='ButtonAdd' type='submit'>ADD</button>
+          <button className='ButtonAdd' type='submit'>Update</button>
 
         </div>
 

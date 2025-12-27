@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap');
 * {
   margin: 0;
   padding: 0;
@@ -17,8 +18,11 @@
 
 .parent {
   border: 2px solid #e0e0e0;;
-  width: 23vw;
-  position: relative;   /* 🔑 reference for header & button */
+  width: 42vw;
+  position: relative;  
+  overflow: hidden; 
+  padding:5px
+
 }
 
 /* ========= HEADER COMPONENT ========= */
@@ -27,20 +31,21 @@
   position: absolute;
   top: 0;
   left: 0;
-  right: 0;             /* 🔑 width locked to parent */
+  right: 0;            
   background-color: #034EA2;
   color: white;
-  font-size: 2em;
-  height: 80px;
+  font-size: 18px;
+  height: 68px;
   display: flex;
   align-items: center;
-  font-family: 'Jost', sans-serif;
+  font-family: Jost, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
   z-index: 1000;
+      font-weight: 550;
 }
 
 .HeaderChild {
   position: relative;
-  left: 10px;
+  left: 30px;
 }
 
 /* ========= HOME PAGE ========= */
@@ -48,7 +53,8 @@
 .HomePage {
   width: 100%;
   min-height: 100vh;
-  padding-top: 80px;    
+  padding-top: 64px;  
+    
 }
 
 /* ========= FLOATING BUTTON ========= */
@@ -66,6 +72,7 @@
   color: white;
   border: none;
   cursor: pointer;
+  
 }
 
 /* ========= SEARCH BAR ========= */
@@ -74,6 +81,7 @@
   display: flex;
   justify-content: center;
    padding:10px;
+   
 }
 
 .SearchBar-child {
@@ -96,6 +104,9 @@
 
 .Search-icon {
   color: #034EA2;
+  font-size: 15px;
+  font-weight: 900;
+
 }
 
 
@@ -108,7 +119,7 @@
 .TaskDashBoard {
   display: flex;
   justify-content: center;
-  margin-top: 10px;
+  margin-top: 4px;
   padding:10px;
   
 }
@@ -129,7 +140,29 @@
   align-items: center;
   padding-left: 12px;
   /* overflow: hidden; */
-  
+  background-color: #F3F6F9;
+    justify-content: space-between;
+    font-size: smaller;
+     opacity:0.8;
+     
+}
+
+
+
+.dash-arrow {
+  transition: transform 0.3s ease;
+
+  transform:rotate(180deg);
+  color:#034EA2;
+  position:relative;
+  right:10px
+}
+
+/* rotate arrow when section open */
+.dash-arrow.rotate {
+  transform: rotate(360deg);
+  color:#034EA2;
+  right:10px
 }
 
 
@@ -213,16 +246,24 @@ bottom:0px;
 .icons i{
   padding-left: 1em;
 }
+.icons {
+  display: flex;
+  align-items: center;  
+  gap: 8px;
+}
 
+.icon {
+  display: block;
+}
 
 /*************** ADD TASK ***************/
 
 .AddTasks{
-  margin-top: 130px;
+  margin-top: 90px;
   width: 98%;
   display:flex;
   flex-direction: column;
-  padding:10px;
+  padding:20px;
 row-gap: 18px;
 
 }
@@ -232,6 +273,7 @@ row-gap: 18px;
  padding-left: 4px;
  padding-top: 10px; 
  border: 1px solid #ccc;
+ white-space:pre;
 }
 
  .addTextArea:focus {
@@ -265,6 +307,9 @@ background-color: #034EA2;
 border-radius: 4px;
 border:none;
 cursor: pointer;
+color:white;
+
+
 }
 
 .ButtonCancel{
@@ -294,6 +339,12 @@ cursor: pointer;
   cursor: pointer;
   background: white;
    border-radius: 5px;
+}
+
+.DropDown .drop{
+  align-self: center;
+ margin-left: auto;
+
 }
 
 /* ONE container for all options */
@@ -342,11 +393,50 @@ background-color: #D0D0D0;
 
 }
 
+.DropDown i{
+  width: 10px;
+  height: 10px;
+  display: inline-block;
+  border-radius: 50%;
+}
 
 
-/* .thin-arrow {
-  color: white;
-  
-  font-size: 18px;    
-  font-weight: 300;  
-} */
+.arrowbhai{
+position: relative;
+left:15px
+}
+
+
+
+/* ADD button states */
+.disabledBtn {
+  background-color: #94a3b8;
+  cursor: not-allowed;
+}
+
+.activeBtn {
+  background-color: #034EA2;
+  cursor: pointer;
+}
+
+/* Title input error */
+.inputError {
+  border: 2px solid red !important;
+}
+
+/* Normal input */
+.addInput {
+  border: 2px solid #ccc;
+  outline: none;
+}
+
+
+
+.no-task{
+  font-size: 13px;
+  display: flex;
+  justify-content: center;
+  opacity: 0.9;
+  padding:10px;
+  font-weight:40px;
+}

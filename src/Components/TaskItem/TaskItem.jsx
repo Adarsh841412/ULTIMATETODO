@@ -34,6 +34,7 @@ function deleteTask(currTask){
 
 
   return (
+
     <div className="Task-Item">
 
       {/* PROFILE CIRCLE */}
@@ -94,8 +95,24 @@ function deleteTask(currTask){
 
  <div className="icons">
 
-  <Link to="/edit" state={tasks} ><i className="fa-solid fa-pencil"  style={{color:"#034EA2"}}></i> </Link>      
-  
+<Link to="/edit" state={tasks}>
+  <svg
+    width="16"
+    height="16"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="#034EA2"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    className="icon"
+  >
+    <path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z" />
+  </svg>
+</Link>
+
+
+
   <i className="fa-regular fa-trash-can" style={{color:"red"}}  onClick={()=>deleteTask(tasks)}></i>
             
           </div>

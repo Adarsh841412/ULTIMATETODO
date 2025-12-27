@@ -1,77 +1,115 @@
-import React, { useCallback, useState } from 'react'
+import React, { useState, useContext } from 'react'
 import Header from '../Components/Header/Header'
 import { Link, useNavigate } from 'react-router-dom'
-import { TaskContext } from '../Components/TaskProvider/TaskProvider';
-import { useContext } from 'react';
-
+import { TaskContext } from '../Components/TaskProvider/TaskProvider'
 
 const AddTaskPage = ({ headerText }) => {
 
-  const navigate = useNavigate();
-  const { task, addTask } = useContext(TaskContext)
+  const navigate = useNavigate()
+  const { addTask } = useContext(TaskContext)
 
-  let [tasks, setTasks] = useState(
-    {
-      title: "",
-      description: "",
-      id:"",
-      status: "pending",
-      createdAt:""
-    }
-  )
+  const [tasks, setTasks] = useState({
+    title: "",
+    description: "",
+    id: "",
+    status: "pending",
+    createdAt: ""
+  })
 
+  const [descTouched, setDescTouched] = useState(false)
 
-
-
+  // INPUT HANDLER 
   function initialTask(e) {
+    const { name, value } = e.target
 
-    setTasks(() => {
-      return { ...tasks, [e.target.name]: e.target.value }
-    })
+    if (name === "description") {
+      setDescTouched(true)
+    }
+
+    setTasks((prev) => ({
+      ...prev,
+      [name]: value
+    }))
   }
 
-
+  // ---------------- FORM SUBMIT ----------------
   function handleFrm(e) {
+    e.preventDefault()
 
-    e.preventDefault();
-    addTask({...tasks,id:Date.now(),createdAt:Date.now()});
-   
+    if (!tasks.title.trim()) return
+
+    addTask({
+      ...tasks,
+      id: Date.now(),
+      createdAt: Date.now()
+    })
+
     setTasks({
-          title: "",
+      title: "",
       description: "",
       id: "",
-      status: "pending"
+      status: "pending",
+      createdAt: ""
     })
+
+    setDescTouched(false)
     navigate("/")
   }
 
- 
-  return (
+  const isTitleFilled = tasks.title.trim().length > 0
 
+  return (
     <div className='AddTask'>
 
       <Header text={headerText} />
+
       <form onSubmit={handleFrm}>
         <div className='AddTasks'>
 
-          <input placeholder='Enter the Title' name='title' onChange={initialTask} value={tasks.title} className='addInput' ></input>
+          {/* -------- TITLE INPUT -------- */}
+          <input
+            placeholder='Enter the Title'
+            name='title'
+            value={tasks.title}
+            onChange={initialTask}
+            className={`addInput ${
+              descTouched && !tasks.title ? "inputError" : ""
+            }`}
+          />
 
-          <textarea  className='addTextArea'  placeholder="Enter the Description" rows={5} name='description' onChange={initialTask} value={tasks.description}></textarea>
+          {/* -------- DESCRIPTION -------- */}
+          <textarea
+            className='addTextArea'
+            placeholder='Enter the Description'
+            rows={5}
+            name='description'
+            value={tasks.description}
+            onChange={initialTask}
+          ></textarea>
 
+          {/* -------- BUTTONS -------- */}
           <div className='Buttons'>
 
-            <Link to="/"><button className='ButtonCancel' type='button'>Cancel</button></Link>
-            
-            <button className='ButtonAdd' type='submit'>ADD</button>
+            <Link to="/">
+              <button className='ButtonCancel' type='button'>
+                Cancel
+              </button>
+            </Link>
+
+            <button
+              className={`ButtonAdd addButton ${
+                isTitleFilled ? "activeBtn" : "disabledBtn"
+              }`}
+              type='submit'
+              disabled={!isTitleFilled}
+            >
+              ADD
+            </button>
 
           </div>
-
         </div>
-
       </form>
-
     </div>
-
   )
 }
 
